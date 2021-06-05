@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Windows.Forms;
 
 namespace Try69
@@ -23,7 +23,7 @@ namespace Try69
         {
             InitializeComponent();
         }
-        
+        #region Движение персонажа + кнопки, взаимодействие по тегам
         private void MainGameTimer(object sender, EventArgs e)
         {
             player.Top += jumpSpeed;
@@ -55,7 +55,7 @@ namespace Try69
 
             foreach (Control x in this.Controls)
             {
-                if (x is PictureBox && x.Tag != null)
+                if (x is PictureBox && x.Tag != null) // Работа с тегами, взаимодействие
                 {
 
                     if (x.Tag.ToString() == "platform")
@@ -132,8 +132,6 @@ namespace Try69
             EnemySpeed();
         }
 
-        private void txtCoins_Click(object sender, EventArgs e){}
-
         private void Keyisdown(object sender, KeyEventArgs e)
         {
             
@@ -170,6 +168,7 @@ namespace Try69
             if (e.KeyCode == Keys.Enter)
                 RestartGame();
         }
+        #endregion
         private void RestartGame()
         {
             jumping = false;
@@ -193,6 +192,7 @@ namespace Try69
             player.Top = 540;
             gameTimer.Start();
         }
+        #region SpawnAllProperties
         public void SpawnTraps()
         {
             trap1.Left = 279;
@@ -242,7 +242,8 @@ namespace Try69
             enemy5.Top = 440;
             enemy5.Visible = true;
         }
-        public void EnemySpeed()
+        #endregion
+        public void EnemySpeed() //Скорость врагов(В общем ходьба вправа и влево)
         {
             enemy1.Left -= enemyOneSpeed;
             if (enemy1.Left < platform2.Left || enemy1.Left + enemy1.Width > platform2.Left + platform2.Width)
@@ -278,5 +279,6 @@ namespace Try69
                 verticalSpeed = -verticalSpeed;
             }
         }
+        private void txtCoins_Click(object sender, EventArgs e) { }
     }
 }
